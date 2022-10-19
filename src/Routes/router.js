@@ -3,9 +3,9 @@ import MainLayout from "../components/MainLayout";
 import Dishes from "../components/Dishes";
 
 //Loaders
-const dishLoader = async () => {
-  return fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=a");
-};
+//const dishLoader = async () => {
+//  return fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=a");
+//};
 
 const routerObj = [
   {
@@ -14,7 +14,6 @@ const routerObj = [
     children: [
       {
         path: "/",
-        loader: dishLoader,
         element: <Dishes />,
       },
     ],
