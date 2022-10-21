@@ -10,14 +10,13 @@ export default function Dishes() {
       .then((res) => res.json())
       .then(({ meals }) => {
         setDishes(meals);
-        console.table({ meals });
         setLoading(false);
       });
   }, []);
 
   const dishesJSX = (d) => {
-    return d.map(({ strMeal, strMealThumb }) => (
-      <DishCard name={strMeal} picture={strMealThumb} />
+    return d.map(({ strMeal, strMealThumb, idMeal }) => (
+      <DishCard name={strMeal} key={idMeal} picture={strMealThumb} />
     ));
   };
 

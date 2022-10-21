@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../components/MainLayout";
 import Dishes from "../components/Dishes";
+import Login from "../components/Login";
+import Register from "../components/Register";
 
 //Loaders
 //const dishLoader = async () => {
@@ -15,6 +17,14 @@ const routerObj = [
       {
         path: "/",
         element: <Dishes />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
       },
     ],
   },

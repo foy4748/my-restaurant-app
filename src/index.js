@@ -8,12 +8,17 @@ import reportWebVitals from "./reportWebVitals";
 import { RouterProvider } from "react-router-dom";
 import router from "./Routes/router";
 
+//For Context API purpose
+import AuthContext from "./Contexts/AuthContext";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router}>
-      <App />
-    </RouterProvider>
+    <AuthContext>
+      <RouterProvider router={router}>
+        <App />
+      </RouterProvider>
+    </AuthContext>
   </React.StrictMode>
 );
 

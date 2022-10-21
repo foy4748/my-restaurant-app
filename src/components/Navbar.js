@@ -1,5 +1,5 @@
 //import styles from "./Navbar.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 //import { useContext } from "react";
 //import { userContext } from "../App";
 
@@ -74,7 +74,11 @@ export default function Navbar() {
             <li>Fart</li>
           </ul>
         </div>
-        <div className="navbar-end"></div>
+        <div className="navbar-end">
+          <Link className="btn" to="/login">
+            Login
+          </Link>
+        </div>
       </div>
     </>
   );
