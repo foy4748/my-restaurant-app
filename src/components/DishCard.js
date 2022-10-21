@@ -1,12 +1,19 @@
 import { Col, Card, Button } from "react-bootstrap";
-export default function DishCard({ name, picture }) {
+import { orderContext } from "../Contexts/OrdersContext";
+import { useContext } from "react";
+
+export default function DishCard({ detail }) {
+  const { name, picture, id } = detail;
+  const { addToOrder } = useContext(orderContext);
   return (
     <Col lg={4} md={6}>
       <Card className="border rounded">
         <Card.Img variant="top" src={picture} />
         <Card.Body>
           <Card.Title>{name}</Card.Title>
-          <Button variant="primary">Order</Button>
+          <Button onClick={() => addToOrder(id)} variant="primary">
+            Order
+          </Button>
         </Card.Body>
       </Card>
     </Col>

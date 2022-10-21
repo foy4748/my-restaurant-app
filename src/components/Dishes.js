@@ -17,7 +17,10 @@ export default function Dishes() {
 
   const dishesJSX = (d) => {
     return d.map(({ strMeal, strMealThumb, idMeal }) => (
-      <DishCard name={strMeal} key={idMeal} picture={strMealThumb} />
+      <DishCard
+        key={idMeal}
+        detail={{ name: strMeal, picture: strMealThumb, id: idMeal }}
+      />
     ));
   };
 

@@ -3,6 +3,7 @@ import MainLayout from "../components/MainLayout";
 import Dishes from "../components/Dishes";
 import Login from "../components/Login";
 import Register from "../components/Register";
+import Orders from "../components/Orders";
 
 //Loaders
 //const dishLoader = async () => {
@@ -17,6 +18,10 @@ const routerObj = [
       {
         path: "/",
         element: <Dishes />,
+      },
+      {
+        path: "/orders",
+        element: <Orders />,
       },
       {
         path: "/login",
