@@ -1,6 +1,7 @@
 import Loader from "./Loader";
 import DishCard from "./DishCard";
 import { useEffect, useState } from "react";
+import { Container, Row } from "react-bootstrap";
 
 export default function Dishes() {
   const [loading, setLoading] = useState(true);
@@ -22,9 +23,9 @@ export default function Dishes() {
 
   const dishContainer = () => {
     return (
-      <section className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {dishesJSX(dishes)}
-      </section>
+      <Container>
+        <Row className="g-5">{dishesJSX(dishes)}</Row>
+      </Container>
     );
   };
 
