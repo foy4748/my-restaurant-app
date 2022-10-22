@@ -11,8 +11,10 @@ export default function Orders() {
   ));
   return (
     <div>
-      <h1>Orders</h1>
       <Container>
+        <h1 className=" text-center my-5 sticky top-0">
+          Orders || Checkout || PayMent
+        </h1>
         <Row className="g-4">{orderedMealsJSX}</Row>
       </Container>
     </div>

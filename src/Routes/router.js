@@ -4,6 +4,7 @@ import Dishes from "../components/Dishes";
 import Login from "../components/Login";
 import Register from "../components/Register";
 import Orders from "../components/Orders";
+import CategoryFoods from "../components/CategoryFoods";
 
 //Loaders
 //const dishLoader = async () => {
@@ -22,6 +23,14 @@ const routerObj = [
       {
         path: "/orders",
         element: <Orders />,
+      },
+      {
+        path: "/categories/:categoryName",
+        loader: async ({ params }) =>
+          fetch(
+            `https://www.themealdb.com/api/json/v1/1/filter.php?c=${params.categoryName}`
+          ),
+        element: <CategoryFoods />,
       },
       {
         path: "/login",

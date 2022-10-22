@@ -32,12 +32,22 @@ export default function OrderedMeal({ id }) {
             <img src={strMealThumb} className="img imgFluid" alt={strMeal} />
           </div>
           <div className="p-3">
-            <h2>{strMeal}</h2>
+            <h2 className="h4">{strMeal}</h2>
             <p>Amount: {orderedMeals[idMeal]}</p>
           </div>
           <div className="d-flex justify-content-center align-items-center p-4">
-            <Button onClick={() => modifyQuantify(idMeal, 1)}>+</Button>
-            <Button onClick={() => modifyQuantify(idMeal, -1)}>-</Button>
+            <Button
+              onClick={() => modifyQuantify(idMeal, 1)}
+              className="btn rouned-circle"
+            >
+              +
+            </Button>
+            <Button
+              onClick={() => modifyQuantify(idMeal, -1)}
+              className="btn rouned-circle"
+            >
+              -
+            </Button>
           </div>
         </div>
       </Col>

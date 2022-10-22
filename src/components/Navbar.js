@@ -1,6 +1,6 @@
 //import styles from "./Navbar.module.css";
 import { NavLink, Link } from "react-router-dom";
-//import { useContext } from "react";
+import { useEffect, useState } from "react";
 //import { userContext } from "../App";
 
 import Container from "react-bootstrap/Container";
@@ -9,34 +9,49 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
 export default function NavBar() {
+  const [availableCategories, setAvailableCategories] = useState([]);
+
+  useEffect(() => {
+    fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
+      .then((res) => res.json())
+      .then(({ categories }) => {
+        setAvailableCategories(categories);
+      });
+  }, []);
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+          <Navbar.Brand href="#home">Posh Restaurant</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#features">Features</Nav.Link>
+              <Nav.Link as={NavLink} to="/orders">
+                Orders
+              </Nav.Link>
               <Nav.Link href="#pricing">Pricing</Nav.Link>
-              <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Something
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Separated link
-                </NavDropdown.Item>
+              <NavDropdown title="Categories" id="collasible-nav-dropdown">
+                {availableCategories.map((cat) => {
+                  return (
+                    <NavDropdown.Item>
+                      {" "}
+                      <Nav.Link
+                        className="text-black"
+                        as={Link}
+                        to={`/categories/${cat.strCategory}`}
+                      >
+                        {" "}
+                        {cat.strCategory}{" "}
+                      </Nav.Link>{" "}
+                    </NavDropdown.Item>
+                  );
+                })}
               </NavDropdown>
             </Nav>
             <Nav>
               <Nav.Link href="#deets">Moredeets</Nav.Link>
-              <Nav.Link eventKey={2} href="#memes">
-                Dank memes
+              <Nav.Link as={NavLink} eventKey={2} to="/login">
+                Login
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
