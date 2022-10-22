@@ -4,7 +4,6 @@ import DishCard from "./DishCard";
 export default function CategoryFoods() {
   const { meals: dishes } = useLoaderData();
   const { categoryName } = useParams();
-  console.log(dishes);
 
   const dishesJSX = (d) => {
     return d.map(({ strMeal, strMealThumb, idMeal }) => (

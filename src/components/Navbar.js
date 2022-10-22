@@ -12,7 +12,8 @@ export default function NavBar() {
 
   const toggleButton = useRef();
   const closeMenu = () => {
-    toggleButton.current.click();
+    if (toggleButton.current.nextSibling.classList.contains("show"))
+      toggleButton.current.click();
   };
 
   useEffect(() => {
@@ -38,27 +39,23 @@ export default function NavBar() {
               <Nav.Link as={NavLink} onClick={closeMenu} to="/orders">
                 Orders
               </Nav.Link>
-              <Nav.Link href="#pricing">Pricing</Nav.Link>
+              <Nav.Link as={Link}>Payment</Nav.Link>
               <NavDropdown title="Categories" id="collasible-nav-dropdown">
                 {availableCategories.map((cat) => {
                   return (
-                    <NavDropdown.Item onClick={closeMenu}>
-                      {" "}
-                      <Nav.Link
-                        className="text-black"
-                        as={Link}
-                        to={`/categories/${cat.strCategory}`}
-                      >
-                        {" "}
-                        {cat.strCategory}{" "}
-                      </Nav.Link>{" "}
+                    <NavDropdown.Item
+                      as={NavLink}
+                      to={`/categories/${cat.strCategory}`}
+                      onClick={closeMenu}
+                      key={cat.idCategory}
+                    >
+                      {cat.strCategory}
                     </NavDropdown.Item>
                   );
                 })}
               </NavDropdown>
             </Nav>
             <Nav>
-              <Nav.Link href="#deets">Moredeets</Nav.Link>
               <Nav.Link as={NavLink} eventKey={2} to="/login">
                 Login
               </Nav.Link>
