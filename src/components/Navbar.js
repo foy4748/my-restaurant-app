@@ -39,6 +39,9 @@ export default function NavBar() {
               <Nav.Link as={NavLink} onClick={closeMenu} to="/orders">
                 Orders
               </Nav.Link>
+              <Nav.Link as={NavLink} onClick={closeMenu} to="/booking">
+                Booking
+              </Nav.Link>
               <Nav.Link as={Link}>Payment</Nav.Link>
               <NavDropdown title="Categories" id="collasible-nav-dropdown">
                 {availableCategories.map((cat) => {

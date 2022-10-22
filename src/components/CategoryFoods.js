@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import { Container, Row } from "react-bootstrap";
 import DishCard from "./DishCard";
@@ -13,6 +14,9 @@ export default function CategoryFoods() {
       />
     ));
   };
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   const dishContainer = () => {
     return (

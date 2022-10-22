@@ -20,6 +20,19 @@
   margin: 4rem 0;
 }
 
+.dinnerTable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dinnerTable > img {
+  border-radius: 2rem;
+}
+.dinnerTable:nth-child(2n) > img {
+  transform: rotate(45deg);
+}
+
 @media screen and (min-width: 300px) {
   .compensatingMargin {
     margin: 8rem 0;

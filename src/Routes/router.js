@@ -4,6 +4,7 @@ import Dishes from "../components/Dishes";
 import Login from "../components/Login";
 import Register from "../components/Register";
 import Orders from "../components/Orders";
+import Tables from "../components/Tables";
 import CategoryFoods from "../components/CategoryFoods";
 
 //Loaders
@@ -23,6 +24,10 @@ const routerObj = [
       {
         path: "/orders",
         element: <Orders />,
+      },
+      {
+        path: "/booking",
+        element: <Tables />,
       },
       {
         path: "/categories/:categoryName",
