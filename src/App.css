@@ -33,6 +33,11 @@
   transform: rotate(45deg);
 }
 
+.booked {
+  background-color: lightgray;
+  filter: invert(109%);
+}
+
 @media screen and (min-width: 300px) {
   .compensatingMargin {
     margin: 8rem 0;
