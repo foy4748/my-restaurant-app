@@ -1,9 +1,9 @@
 import { getAuth } from "firebase/auth";
-import firebaseApp from "../firebase.config.js";
+import firebaseApp from "../firebase/firebase.config.js";
 
 import { useLocation, Navigate } from "react-router-dom";
 
-import { userContext } from "../App";
+import { userContext } from "../Contexts/AuthContext";
 import { useContext } from "react";
 const auth = getAuth(firebaseApp);
 

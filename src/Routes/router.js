@@ -1,4 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
+
+import PrivateRoute from "./PrivateRoute";
+
 import MainLayout from "../components/MainLayout";
 import Dishes from "../components/Dishes";
 import Login from "../components/Login";
@@ -23,11 +26,21 @@ const routerObj = [
       },
       {
         path: "/orders",
-        element: <Orders />,
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Orders />{" "}
+          </PrivateRoute>
+        ),
       },
       {
         path: "/booking",
-        element: <Tables />,
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Tables />{" "}
+          </PrivateRoute>
+        ),
       },
       {
         path: "/categories/:categoryName",

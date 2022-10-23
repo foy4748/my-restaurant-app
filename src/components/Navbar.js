@@ -1,19 +1,45 @@
 //import styles from "./Navbar.module.css";
 import { NavLink, Link } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
+import { userContext } from "../Contexts/AuthContext";
+
 export default function NavBar() {
   const [availableCategories, setAvailableCategories] = useState([]);
+  const { activeUser, setActiveUser, logOutHandler } = useContext(userContext);
 
   const toggleButton = useRef();
   const closeMenu = () => {
     if (toggleButton.current.nextSibling.classList.contains("show"))
       toggleButton.current.click();
+  };
+
+  const handleLogOut = () => {
+    logOutHandler().then(() => {
+      setActiveUser(null);
+    });
+  };
+
+  const logoutNavItem = () => {
+    return <Nav.Link onClick={handleLogOut}>Log Out</Nav.Link>;
+  };
+
+  const loginRegisterNavItem = () => {
+    return (
+      <>
+        <Nav.Link as={NavLink} to="/register">
+          Register
+        </Nav.Link>
+        <Nav.Link as={NavLink} to="/login">
+          Login
+        </Nav.Link>
+      </>
+    );
   };
 
   useEffect(() => {
@@ -59,9 +85,9 @@ export default function NavBar() {
               </NavDropdown>
             </Nav>
             <Nav>
-              <Nav.Link as={NavLink} eventKey={2} to="/login">
-                Login
-              </Nav.Link>
+              {activeUser && activeUser.uid
+                ? logoutNavItem()
+                : loginRegisterNavItem()}
             </Nav>
           </Navbar.Collapse>
         </Container>
