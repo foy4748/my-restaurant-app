@@ -42,12 +42,9 @@ export default function Tables() {
 
   for (let i = 1; i <= 9; i++) {
     tableJSX.push(
-      <Col
-        key={i}
-        className="dinnerTable"
-        onClick={(e) => handleTableClick(e, i)}
-      >
+      <Col key={i} className="dinnerTable">
         <img
+          onClick={(e) => handleTableClick(e, i)}
           src="/table.png"
           className={`${
             Object.values(bookedTables).includes(i) ? "booked" : ""
@@ -157,9 +154,9 @@ export default function Tables() {
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-        </div>
-        <div>
-          <Button onClick={booking}>Book !</Button>
+          <div className="d-flex align-items-center">
+            <Button onClick={booking}>Book !</Button>
+          </div>
         </div>
       </div>
       <Row lg={3} className="g-5 mt-4">
