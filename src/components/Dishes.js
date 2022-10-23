@@ -1,7 +1,7 @@
 import Loader from "./Loader";
 import DishCard from "./DishCard";
 import { useEffect, useState } from "react";
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Carousel } from "react-bootstrap";
 
 export default function Dishes() {
   const [loading, setLoading] = useState(true);
@@ -24,11 +24,36 @@ export default function Dishes() {
     ));
   };
 
+  const carauselJSX = (d) => {
+    const pickedOnes = d.slice(-3);
+    return (
+      <Carousel className="carauselContainer">
+        {pickedOnes.map((item) => {
+          return (
+            <Carousel.Item interval={1000} key={item.idMeal}>
+              <img
+                className="d-block w-100 carauselImg"
+                src={item.strMealThumb}
+                alt={item.strMeal}
+              />
+              <Carousel.Caption>
+                <h3>{item.strMeal}</h3>
+              </Carousel.Caption>
+            </Carousel.Item>
+          );
+        })}
+      </Carousel>
+    );
+  };
+
   const dishContainer = () => {
     return (
-      <Container>
-        <Row className="g-5">{dishesJSX(dishes)}</Row>
-      </Container>
+      <>
+        {carauselJSX(dishes)}
+        <Container>
+          <Row className="g-5">{dishesJSX(dishes)}</Row>
+        </Container>
+      </>
     );
   };
 

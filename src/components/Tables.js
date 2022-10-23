@@ -25,13 +25,17 @@ export default function Tables() {
 
   useEffect(() => {
     const fetcher = async () => {
-      const res = await fetch(
-        `${process.env.SERVER_ADDRESS || "http://localhost:3001"}/schedules/${
-          selectedDate + selectedTime
-        }`
-      );
-      const result = await res.json();
-      setBookedTables(result);
+      try {
+        const res = await fetch(
+          `${process.env.SERVER_ADDRESS || "http://localhost:3001"}/schedules/${
+            selectedDate + selectedTime
+          }`
+        );
+        const result = await res.json();
+        setBookedTables(result);
+      } catch (error) {
+        console.error(error);
+      }
     };
 
     fetcher();
@@ -105,8 +109,8 @@ export default function Tables() {
   //----------------------------------------
 
   return (
-    <Container className="g-4">
-      <div className="d-md-flex justify-content-end align-items-center">
+    <Container className="g-4 fixMarginTop">
+      <div className="d-md-flex justify-content-center align-items-center flex-column p-4 sticky  fix">
         <div className="border rounded d-flex flex-column justify-content-center align-items-center">
           <span>Pick a Date: </span>
           <DatePicker
@@ -154,12 +158,14 @@ export default function Tables() {
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          <div className="d-flex align-items-center">
-            <Button onClick={booking}>Book !</Button>
+          <div className="d-flex align-items-center justify-content-center">
+            <Button onClick={booking} className="py-3">
+              Book !
+            </Button>
           </div>
         </div>
       </div>
-      <Row lg={3} className="g-5 mt-4">
+      <Row sm={12} lg={3} className="g-5 mt-4 fixOverflow">
         {tableJSX}
       </Row>
     </Container>

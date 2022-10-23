@@ -21,7 +21,7 @@ export default function CategoryFoods() {
   const dishContainer = () => {
     return (
       <Container>
-        <h1>{categoryName}</h1>
+        <h1 className="py-4">{categoryName}</h1>
         <Row className="g-5">{dishesJSX(dishes)}</Row>
       </Container>
     );
