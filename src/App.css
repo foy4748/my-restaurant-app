@@ -33,7 +33,8 @@
   transform: rotate(45deg);
 }
 
-.booked {
+.booked,
+.bookedNow {
   background-color: lightgray;
   filter: invert(109%);
 }

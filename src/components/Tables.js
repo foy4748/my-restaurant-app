@@ -42,7 +42,11 @@ export default function Tables() {
 
   for (let i = 1; i <= 9; i++) {
     tableJSX.push(
-      <Col key={i} className="dinnerTable" onClick={() => setSelectedTable(i)}>
+      <Col
+        key={i}
+        className="dinnerTable"
+        onClick={(e) => handleTableClick(e, i)}
+      >
         <img
           src="/table.png"
           className={`${
@@ -61,6 +65,22 @@ export default function Tables() {
     setSelectedDate(selectedDate);
 
     setStartDate(e);
+  };
+
+  const handleTableClick = (e, i) => {
+    const tables = window.document.body.getElementsByClassName("dinnerTable");
+    if (e.target.classList.contains("booked")) {
+      return;
+    }
+
+    Object.values(tables).forEach((item) => {
+      const table = item.firstElementChild;
+      if (table.classList.contains("bookedNow")) {
+        table.classList.remove("bookedNow");
+      }
+    });
+    e.target.classList.add("bookedNow");
+    setSelectedTable(i);
   };
 
   const booking = async () => {
