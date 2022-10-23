@@ -36,8 +36,17 @@ export default function Dishes() {
                 src={item.strMealThumb}
                 alt={item.strMeal}
               />
-              <Carousel.Caption>
-                <h3>{item.strMeal}</h3>
+              <Carousel.Caption className="centeringCaption">
+                <div className="d-flex justify-content-between">
+                  <div className="leftPart">
+                    <h1>Featured Dishes</h1>
+                    <p>Invented by our culnury experts</p>
+                  </div>
+                  <div className="d-none d-md-block rightPart">
+                    <h1>Ready to Order</h1>
+                    <p>Order, when its hot</p>
+                  </div>
+                </div>
               </Carousel.Caption>
             </Carousel.Item>
           );
@@ -51,7 +60,10 @@ export default function Dishes() {
       <>
         {carauselJSX(dishes)}
         <Container>
-          <Row className="g-5">{dishesJSX(dishes)}</Row>
+          <h1 className="my-5 ">Dishes</h1>
+          <Container>
+            <Row className="g-5">{dishesJSX(dishes)}</Row>
+          </Container>
         </Container>
       </>
     );

@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import { userContext } from "../Contexts/AuthContext";
+import Loader from "./Loader";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -12,6 +13,7 @@ export default function Tables() {
 
   // STATES --------------------------------
   const [startDate, setStartDate] = useState(new Date());
+  const [loading, setLoading] = useState(true);
 
   //Date Time and Table state
   const [selectedTime, setSelectedTime] = useState(0);
@@ -27,17 +29,19 @@ export default function Tables() {
     const fetcher = async () => {
       try {
         const res = await fetch(
-          `${process.env.SERVER_ADDRESS || "http://localhost:3001"}/schedules/${
-            selectedDate + selectedTime
-          }`
+          `${
+            process.env.REACT_APP_SERVER_ADDRESS || "http://localhost:3001"
+          }/schedules/${selectedDate + selectedTime}`
         );
         const result = await res.json();
         setBookedTables(result);
+        setLoading(false);
       } catch (error) {
         console.error(error);
       }
     };
 
+    setLoading(true);
     fetcher();
   }, [selectedDate, selectedTime]);
 
@@ -166,7 +170,7 @@ export default function Tables() {
         </div>
       </div>
       <Row sm={12} lg={3} className="g-5 mt-4 fixOverflow">
-        {tableJSX}
+        {loading ? <Loader /> : tableJSX}
       </Row>
     </Container>
   );

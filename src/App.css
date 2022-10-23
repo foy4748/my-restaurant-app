@@ -16,6 +16,15 @@
   left: 0 !important;
 }
 
+.fix {
+  top: 36px;
+  z-index: 1;
+}
+
+.fixMarginTop {
+  margin-top: 15rem;
+}
+
 .compensatingMargin {
   margin: 4rem 0;
 }
@@ -24,10 +33,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0;
   -webkit-user-select: none; /* Chrome all / Safari all */
   -moz-user-select: none; /* Firefox all */
   -ms-user-select: none; /* IE 10+ */
   user-select: none; /* Likely future */
+}
+
+.fixOverflow {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dinnerTable > img {
@@ -43,9 +60,34 @@
   filter: invert(109%);
 }
 
+/* Carausel Styling */
+.carauselContainer {
+  width: 100%;
+}
+
+.carauselImg {
+  object-fit: cover;
+  max-height: 80vh;
+  filter: contrast(90%) brightness(50%);
+}
+
+.centeringCaption {
+  top: 30%;
+}
+
+.leftPart {
+  text-align: left;
+}
+
+.rightPart {
+  text-align: right;
+}
 @media screen and (min-width: 300px) {
   .compensatingMargin {
     margin: 8rem 0;
+  }
+  .fixOverflow {
+    margin: 0 !important;
   }
 }
 
@@ -53,6 +95,9 @@
   .sticky {
     font-size: 2rem;
     padding: 2rem 0;
+  }
+  .dinnerTable {
+    width: 100%;
   }
   .imgFluid {
     max-height: 20rem;
