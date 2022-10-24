@@ -4,21 +4,10 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-//For routing purpose
-import { RouterProvider } from "react-router-dom";
-import router from "./Routes/router";
-
-//For Context API purpose
-import AuthContext from "./Contexts/AuthContext";
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <AuthContext>
-      <RouterProvider router={router}>
-        <App />
-      </RouterProvider>
-    </AuthContext>
+    <App />
   </React.StrictMode>
 );
 

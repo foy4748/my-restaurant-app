@@ -3,15 +3,20 @@ import { Outlet } from "react-router-dom";
 import styles from "./MainLayout.module.css";
 import OrderContext from "../Contexts/OrdersContext";
 
-export default function MealsContainer() {
+//For Context API purpose
+import AuthContext from "../Contexts/AuthContext";
+
+export default function MainLayout() {
   return (
     <>
-      <NavBar />
-      <OrderContext>
-        <section className={styles.mainContainer}>
-          <Outlet />
-        </section>
-      </OrderContext>
+      <AuthContext>
+        <NavBar />
+        <OrderContext>
+          <section className={styles.mainContainer}>
+            <Outlet />
+          </section>
+        </OrderContext>
+      </AuthContext>
     </>
   );
 }

@@ -17,17 +17,14 @@ export default function AuthContext({ children }) {
   const [authLoading, setAuthLoading] = useState(true);
   //------------------------------
   useEffect(() => {
-    const persist = () => {
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          setActiveUser(user);
-        }
-        setAuthLoading(false);
-      });
-    };
+    const persist = onAuthStateChanged(auth, (user) => {
+      setActiveUser(user);
+      setAuthLoading(false);
+    });
 
     return () => persist();
-  }, [activeUser]);
+  }, []);
+
   // Auth Handling functions
   const loginHandler = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
