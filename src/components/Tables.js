@@ -34,6 +34,7 @@ export default function Tables() {
           }/schedules/${selectedDate + selectedTime}`
         );
         const result = await res.json();
+        console.log(result);
         setBookedTables(result);
         setLoading(false);
       } catch (error) {
@@ -94,21 +95,28 @@ export default function Tables() {
       return;
     }
 
-    const payLoad = {
-      DATE: selectedDate,
-      TIME: selectedTime,
-      TABLE: selectedTable,
-      UID: activeUser.uid,
-    };
-    const res = await fetch(
-      `${process.env.SERVER_ADDRESS || "http://localhost:3001"}/schedules`,
-      {
-        method: "POST",
-        body: JSON.stringify(payLoad),
-        headers: { "Content-type": "application/json; charset=UTF-8" },
-      }
-    );
-    const result = await res.json();
+    try {
+      const payLoad = {
+        DATE: selectedDate,
+        TIME: selectedTime,
+        TABLE: selectedTable,
+        UID: activeUser.uid,
+      };
+      const res = await fetch(
+        `${
+          process.env.REACT_APP_SERVER_ADDRESS || "http://localhost:3001"
+        }/schedules`,
+        {
+          method: "POST",
+          body: JSON.stringify(payLoad),
+          headers: { "Content-type": "application/json; charset=UTF-8" },
+        }
+      );
+      const result = await res.json();
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
   };
   //----------------------------------------
 
