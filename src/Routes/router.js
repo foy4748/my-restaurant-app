@@ -28,8 +28,7 @@ const routerObj = [
         path: "/orders",
         element: (
           <PrivateRoute>
-            {" "}
-            <Orders />{" "}
+            <Orders />
           </PrivateRoute>
         ),
       },
@@ -37,8 +36,7 @@ const routerObj = [
         path: "/booking",
         element: (
           <PrivateRoute>
-            {" "}
-            <Tables />{" "}
+            <Tables />
           </PrivateRoute>
         ),
       },
