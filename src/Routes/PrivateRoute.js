@@ -16,7 +16,7 @@ export default function PrivateRoute({ children }) {
   if (Loading) {
     return (
       <div>
-        <Loader />{" "}
+        <Loader />
       </div>
     );
   }
