@@ -5,8 +5,10 @@ import Loader from "./Loader";
 
 import "react-datepicker/dist/react-datepicker.css";
 
+const SERVER = import.meta.env.VITE_SERVER_ADDRESS || "http://localhost:3001";
+
 import { Container, Col, Row, Dropdown, Button } from "react-bootstrap";
-const moment = require("moment");
+import moment from "moment";
 
 export default function Tables() {
   const { activeUser } = useContext(userContext);
@@ -29,9 +31,7 @@ export default function Tables() {
     const fetcher = async () => {
       try {
         const res = await fetch(
-          `${
-            process.env.REACT_APP_SERVER_ADDRESS || "http://localhost:3001"
-          }/schedules/${selectedDate + selectedTime}`
+          `${SERVER}/schedules/${selectedDate + selectedTime}`
         );
         const result = await res.json();
         console.log(result);
@@ -102,16 +102,11 @@ export default function Tables() {
         TABLE: selectedTable,
         UID: activeUser.uid,
       };
-      const res = await fetch(
-        `${
-          process.env.REACT_APP_SERVER_ADDRESS || "http://localhost:3001"
-        }/schedules`,
-        {
-          method: "POST",
-          body: JSON.stringify(payLoad),
-          headers: { "Content-type": "application/json; charset=UTF-8" },
-        }
-      );
+      const res = await fetch(`${SERVER}/schedules`, {
+        method: "POST",
+        body: JSON.stringify(payLoad),
+        headers: { "Content-type": "application/json; charset=UTF-8" },
+      });
       const result = await res.json();
       console.log(result);
     } catch (error) {
@@ -177,7 +172,7 @@ export default function Tables() {
           </div>
         </div>
       </div>
-      <Row sm={12} lg={3} className="g-5 mt-4 fixOverflow">
+      <Row sm={1} md={2} lg={3} className="g-5 mt-4 fixOverflow">
         {loading ? <Loader /> : tableJSX}
       </Row>
     </Container>

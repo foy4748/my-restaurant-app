@@ -5,21 +5,21 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const {
-  REACT_APP_apiKey,
-  REACT_APP_authDomain,
-  REACT_APP_projectId,
-  REACT_APP_storageBucket,
-  REACT_APP_messagingSenderId,
-  REACT_APP_appId,
-} = process.env;
+  VITE_apiKey,
+  VITE_authDomain,
+  VITE_projectId,
+  VITE_storageBucket,
+  VITE_messagingSenderId,
+  VITE_appId,
+} = import.meta.env;
 
 const firebaseConfig = {
-  apiKey: REACT_APP_apiKey,
-  authDomain: REACT_APP_authDomain,
-  projectId: REACT_APP_projectId,
-  storageBucket: REACT_APP_storageBucket,
-  messagingSenderId: REACT_APP_messagingSenderId,
-  appId: REACT_APP_appId,
+  apiKey: VITE_apiKey,
+  authDomain: VITE_authDomain,
+  projectId: VITE_projectId,
+  storageBucket: VITE_storageBucket,
+  messagingSenderId: VITE_messagingSenderId,
+  appId: VITE_appId,
 };
 
 // Initialize Firebase
