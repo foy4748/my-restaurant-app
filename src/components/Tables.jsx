@@ -74,10 +74,13 @@ export default function Tables() {
   };
 
   const handleTableClick = (e, i) => {
-    const tables = window.document.body.getElementsByClassName("dinnerTable");
     if (e.target.classList.contains("booked")) {
       return;
     }
+
+    setSelectedTable(i);
+
+    const tables = window.document.body.getElementsByClassName("dinnerTable");
 
     Object.values(tables).forEach((item) => {
       const table = item.firstElementChild;
@@ -86,7 +89,6 @@ export default function Tables() {
       }
     });
     e.target.classList.add("bookedNow");
-    setSelectedTable(i);
   };
 
   const booking = async () => {
@@ -94,6 +96,13 @@ export default function Tables() {
       console.log("Please, select DATE, TIME and TABLE");
       return;
     }
+
+    // Never do spread operations inside dispatch functions
+    let newTables = [];
+    if (bookedTables && bookedTables.length >= 1)
+      newTables = [...bookedTables, selectedTable];
+    else newTables.push(selectedTable);
+    setBookedTables(newTables);
 
     try {
       const payLoad = {
@@ -109,12 +118,6 @@ export default function Tables() {
         headers: { "Content-type": "application/json; charset=UTF-8" },
       });
       const result = await res.json();
-      setBookedTables((curr) => {
-        if (!curr?.found) {
-          return [selectedTable];
-        }
-        return [...curr, selectedTable];
-      });
       console.log(result);
     } catch (error) {
       console.log(error);
