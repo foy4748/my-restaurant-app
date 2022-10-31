@@ -1,14 +1,21 @@
 import { createContext, useEffect, useState } from "react";
-import firebaseApp from "../firebase/firebase.config.js";
+import firebaseApp from "../firebase/firebase.config";
 import {
   getAuth,
   signInWithEmailAndPassword,
+  signInWithPopup,
+  updateProfile,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
 } from "firebase/auth";
 
+import { GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
+
 const auth = getAuth(firebaseApp);
+const googleAuthProvider = new GoogleAuthProvider(auth);
+const githubAuthProvider = new GithubAuthProvider(auth);
+
 const userContext = createContext(null);
 export { userContext };
 
@@ -27,11 +34,26 @@ export default function AuthContext({ children }) {
 
   // Auth Handling functions
   const loginHandler = (email, password) => {
+    setAuthLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
+  const googleLoginHandler = () => {
+    setAuthLoading(true);
+    return signInWithPopup(auth, googleAuthProvider);
+  };
+
+  const githubLoginHandler = () => {
+    setAuthLoading(true);
+    return signInWithPopup(auth, githubAuthProvider);
+  };
   const registerHandler = (email, password) => {
+    setAuthLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  const updateUserProfile = (profileObj) => {
+    return updateProfile(auth.currentUser, profileObj);
   };
 
   const logOutHandler = () => {
@@ -42,7 +64,10 @@ export default function AuthContext({ children }) {
   // PayLoad
   const contextPayLoad = {
     loginHandler,
+    googleLoginHandler,
+    githubLoginHandler,
     registerHandler,
+    updateUserProfile,
     authLoading,
     activeUser,
     setActiveUser,

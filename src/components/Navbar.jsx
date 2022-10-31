@@ -1,5 +1,5 @@
 //import styles from "./Navbar.module.css";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { useEffect, useState, useRef, useContext } from "react";
 
 import Container from "react-bootstrap/Container";
@@ -12,6 +12,7 @@ import { userContext } from "../Contexts/AuthContext";
 export default function NavBar() {
   const [availableCategories, setAvailableCategories] = useState([]);
   const { activeUser, setActiveUser, logOutHandler } = useContext(userContext);
+  const location = useLocation();
 
   const toggleButton = useRef();
   const closeMenu = () => {
@@ -32,10 +33,20 @@ export default function NavBar() {
   const loginRegisterNavItem = () => {
     return (
       <>
-        <Nav.Link as={NavLink} to="/register">
+        <Nav.Link
+          as={NavLink}
+          to="/register"
+          state={{ from: location?.state?.from }}
+          replace
+        >
           Register
         </Nav.Link>
-        <Nav.Link as={NavLink} to="/login">
+        <Nav.Link
+          as={NavLink}
+          to="/login"
+          state={{ from: location?.state?.from }}
+          replace
+        >
           Login
         </Nav.Link>
       </>

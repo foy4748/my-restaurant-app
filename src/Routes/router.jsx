@@ -4,8 +4,10 @@ import PrivateRoute from "./PrivateRoute";
 
 import MainLayout from "../components/MainLayout";
 import Dishes from "../components/Dishes";
-import Login from "../components/Login";
-import Register from "../components/Register";
+
+import Login from "../components/AuthPages/Login";
+import Register from "../components/AuthPages/Register";
+
 import Orders from "../components/Orders";
 import Tables from "../components/Tables";
 import CategoryFoods from "../components/CategoryFoods";
