@@ -26,9 +26,9 @@ export default function OrderedMeal({ id }) {
   } else {
     const { strMeal, strMealThumb, idMeal } = item;
     return (
-      <Col sm={12} lg={4}>
+      <Col sm={12} lg={6}>
         <div className="d-md-flex border rounded justify-content-between">
-          <div className="d-flex justify-content-center ">
+          <div className="d-flex justify-content-center card-height">
             <img src={strMealThumb} className="img imgFluid" alt={strMeal} />
           </div>
           <div className="p-3">

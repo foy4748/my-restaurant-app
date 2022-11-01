@@ -14,11 +14,11 @@ export default function Orders() {
     window.scroll(0, 0);
   }, []);
   return (
-    <div>
+    <Container>
       <h1 className="my-5 sticky top-0">Orders || Review || Payment </h1>
       <Container className="compensatingMargin">
         <Row className="g-4">{orderedMealsJSX}</Row>
       </Container>
-    </div>
+    </Container>
   );
 }

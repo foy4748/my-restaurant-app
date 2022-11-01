@@ -34,8 +34,7 @@ export default function Tables() {
           `${SERVER}/schedules/${selectedDate + selectedTime}`
         );
         const result = await res.json();
-        console.log(result);
-        setBookedTables(result);
+        setBookedTables(result.map((item) => item.table));
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -93,6 +92,7 @@ export default function Tables() {
 
   const booking = async () => {
     if (!selectedDate || !selectedTime || !selectedTable) {
+      // Gotta Implement Toast here
       console.log("Please, select DATE, TIME and TABLE");
       return;
     }
@@ -111,16 +111,14 @@ export default function Tables() {
         TABLE: selectedTable,
         UID: activeUser.uid,
       };
-      console.log(selectedTable);
       const res = await fetch(`${SERVER}/schedules`, {
         method: "POST",
         body: JSON.stringify(payLoad),
         headers: { "Content-type": "application/json; charset=UTF-8" },
       });
       const result = await res.json();
-      console.log(result);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
   //----------------------------------------
